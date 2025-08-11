@@ -9,4 +9,17 @@ const existUserByNickname = async (req, res, next) => {
     next();
 }
 
-module.exports = {existUserByNickname};
+const validateUniqueUser = async (req, res, next) => {
+    const {nickname, email} = req.body;
+    const existNickname = await User.findOne({where: {nickname}});
+    const existEmail = await User.findOne({where: {email}});
+    if (existNickname) {
+        return res.status(409).json({message: "Este nickname ya esta en uso"});
+    }
+    if(existEmail) {
+        return res.status(409).json({message: "Este email ya esta en uso"});
+    }
+    next();
+}
+
+module.exports = {existUserByNickname, validateUniqueUser};
