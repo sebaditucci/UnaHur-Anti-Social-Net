@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Post.init({
-    descripcion: {type: DataTypes.STRING}
+    descripcion: {type: DataTypes.STRING, allowNull: false}
   }, {
     sequelize,
     modelName: 'Post',

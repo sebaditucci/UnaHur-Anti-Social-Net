@@ -12,4 +12,17 @@ const existsById = (model) => {
     }
 }
 
-module.exports = {existsById}
+const schemaValidator = (schema) => {
+    return (req, res, next) => {
+        const {error, _} = schema.validate(req.body, {abortEarly: false});
+        if (error) {
+            const errors = error.details.map(e => {
+                return {atribute: e.path[0], message: e.message, typeError: e.type};
+            }) 
+            return res.status(400).json(errors);
+        }
+        next();
+    }
+}
+
+module.exports = {existsById, schemaValidator}
