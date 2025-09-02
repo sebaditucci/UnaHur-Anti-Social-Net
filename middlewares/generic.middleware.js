@@ -1,12 +1,12 @@
-const existsById = (model) => {
+const existsById = (Model) => {
     return async (req, res, next) => {
         const id = req.params.id;
         if (id <= 0) {
-            return res.status(400).json({message: "El id del usuario no puede ser negativo"});
+            return res.status(400).json({message: "El id no puede ser negativo"});
         }
-        const user = await model.findByPk(id);
-        if(!user) {
-            return res.status(400).json({message: "El usuario no existe"});
+        const model = await Model.findByPk(id);
+        if(!model) {
+            return res.status(400).json({message: "Este elemento no existe"});
         }
         next();
     }

@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const {userController, genericController} = require('../controllers');
+const {genericController} = require('../controllers');
 const {userMiddleware, genericMiddleware} = require('../middlewares');
 const {User} = require('../db/models')
 const {userSchema} = require('../schemas');
@@ -12,9 +12,9 @@ router.get(
 );
 
 router.get(
-    '/:nickname',
-    userMiddleware.existUserByNickname, 
-    userController.getUserByNickname
+    '/:id',
+    genericMiddleware.existsById(User), 
+    genericController.getModelById(User)
 );
 
 router.post(
@@ -25,16 +25,17 @@ router.post(
 );
 
 router.put(
-    '/:nickname',
+    '/:id',
     genericMiddleware.schemaValidator(userSchema),
-    userMiddleware.existUserByNickname,
-    userController.putUserByNickname
+    genericMiddleware.existsById(User),
+    userMiddleware.validateUniqueUser,
+    genericController.putModelById(User)
 );
 
 router.delete(
-    '/:nickname', 
-    userMiddleware.existUserByNickname, 
-    userController.deleteUserByNickname
+    '/:id', 
+    genericMiddleware.existsById(User), 
+    genericController.deleteModelById(User)
 );
 
 module.exports = router;
