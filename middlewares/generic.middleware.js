@@ -6,7 +6,7 @@ const existsById = (Model) => {
         }
         const model = await Model.findByPk(id);
         if(!model) {
-            return res.status(400).json({message: "Este elemento no existe"});
+            return res.status(404).json({message: "Este elemento no existe"});
         }
         next();
     }

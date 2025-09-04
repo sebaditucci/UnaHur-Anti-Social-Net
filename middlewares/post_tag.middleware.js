@@ -7,7 +7,7 @@ const existPostsByTagId = async (req, res, next) => {
     }
     const post = await Post_tag.findOne({where: {tag_id}});
     if (!post) {
-        return res.status(400).json({message: `no se encontro ningún post asociado al tag ${tag_id}`});
+        return res.status(404).json({message: `no se encontro ningún post asociado al tag ${tag_id}`});
     }
     next();
 }
@@ -19,7 +19,7 @@ const existTagsByPostId = async (req, res, next) => {
     }
     const tag = await Post_tag.findOne({where: {post_id}});
     if (!tag) {
-        return res.status(400).json({message: `no se encontro ningún post asociado al post ${post_id}`});
+        return res.status(404).json({message: `no se encontro ningún tag asociado al post ${post_id}`});
     }
     next();
 }

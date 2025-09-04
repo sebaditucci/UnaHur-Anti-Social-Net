@@ -12,12 +12,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Post_image.belongsTo(models.Post, {
         foreignKey: {name: "post_id", allowNull: false},
+        onDelete: 'CASCADE',
         as: "post"
       })
     }
   }
   Post_image.init({
-    url: { type: DataTypes.STRING, allowNull: false }
+    url: { type: DataTypes.STRING, allowNull: false },
+    post_id: {type: DataTypes.INTEGER}
   }, {
     sequelize,
     modelName: 'Post_image',

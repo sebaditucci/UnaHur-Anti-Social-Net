@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const {genericController} = require('../controllers');
 const {Post} = require('../db/models')
-const {genericMiddleware} = require('../middlewares');
+const {genericMiddleware, postMiddleware} = require('../middlewares');
 const {postSchema} = require('../schemas');
 
 const router = Router();
@@ -32,7 +32,7 @@ router.put(
 
 router.delete(
     '/:id', 
-    genericMiddleware.existsById(Post), 
+    genericMiddleware.existsById(Post),
     genericController.deleteModelById(Post)
 );
 

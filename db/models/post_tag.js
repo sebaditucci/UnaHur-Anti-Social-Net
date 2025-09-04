@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Post_tag.init({
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true }
+    post_id: { type: DataTypes.INTEGER },
+    tag_id: { type: DataTypes.INTEGER }
   }, {
     sequelize,
     modelName: 'Post_tag',

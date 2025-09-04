@@ -4,5 +4,6 @@ const commentRoute = require('./comment.route');
 const postImageRoute = require('./post_image.route');
 const tagRoute = require('./tag.route');
 const postTagRoute = require('./post_tag.route');
+const userFollowsRoute = require('./userFollows.route');
 
-module.exports = {userRoute, postRoute, commentRoute, postImageRoute, tagRoute, postTagRoute};
+module.exports = {userRoute, postRoute, commentRoute, postImageRoute, tagRoute, postTagRoute, userFollowsRoute};

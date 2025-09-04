@@ -12,26 +12,30 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasMany(models.Post, {
         foreignKey: "user_id",
+        onDelete: 'CASCADE',
         as: "posts",
       });
 
       User.hasMany(models.Comment, {
         foreignKey: "user_id",
+        onDelete: 'CASCADE',
         as: "comments",
       });
 
       User.belongsToMany(models.User, {
-        through: "User_follows",         
+        through: "UserFollows",         
         as: "following",                 
         foreignKey: "follower_id",
-        otherKey: "following_id"
+        otherKey: "following_id",
+        onDelete: 'CASCADE'
       });
 
       User.belongsToMany(models.User, {
-        through: "User_follows",     
+        through: "UserFollows",     
         as: "followers",                
         foreignKey: "following_id",
-        otherKey: "follower_id"
+        otherKey: "follower_id",
+        onDelete: 'CASCADE'
       });
     }
   }

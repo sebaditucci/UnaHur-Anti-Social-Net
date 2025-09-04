@@ -29,6 +29,7 @@ router.get(
 router.post(
     '/',
     genericMiddleware.schemaValidator(postTagSchema),
+    //middleware para atajar errores de ids inexistentes
     genericController.createNewModel(Post_tag)
 );
 
