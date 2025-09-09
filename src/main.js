@@ -18,7 +18,7 @@ app.use('/userFollows', userFollowsRoute);
 (async () => {
     try {
         await sequelize.query("PRAGMA foreign_keys = OFF");
-        await db.sequelize.sync({ force: true });
+        //await db.sequelize.sync({ force: true });
         await sequelize.query("PRAGMA foreign_keys = ON");
         
         console.log('Base de datos sincronizada correctamente');

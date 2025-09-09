@@ -1,0 +1,9 @@
+services:
+  app:
+    image: unahur-anti-social-net-app
+    ports:
+      - "${PORT:-3001}:${PORT:-3001}"
+    environment:
+      - PORT=3001
+    volumes:
+      - ./data:/app/data
